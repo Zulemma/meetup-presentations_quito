@@ -1,0 +1,58 @@
+---
+title: "Prueba"
+author: "RLadies Quito"
+date: "7 de febrero de 2018"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ejercicio
+
+Se pretende descargar un conjunto de datos (formato delimitado por comas (csv)) que se encuentra disponible en el repositorio **dagdata** en github. Los datos están en <https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/>
+
+```{r carga_librerias}
+library(dplyr)
+library(downloader)
+```
+
+```{r def_var, echo=FALSE}
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+filename <- "msleep_ggplot2.csv"
+```
+
+La opción `echo = FALSE` en el chunk (pedazo de código) es usado para prevenir la impresión de código.
+
+```{r creac_var}
+if (!file.exists(filename)) download(url,filename)
+msleep <- read.csv("msleep_ggplot2.csv")
+head(msleep)
+```
+
+```{r media}
+sleep_total_media<-mean(msleep$sleep_total)
+sleep_total_media
+```
+
+```{r resumen}
+summary(msleep)
+```
+
+```{r hist}
+hist(msleep$sleep_total)
+```
+
+```{r boxplot}
+boxplot(msleep$sleep_total)
+```
+
+```{r vore}
+table(msleep$vore)
+```
+
+Es solo un ejemplo de reporte automático
